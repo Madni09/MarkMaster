@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher's Portal - Vidhyanagri MCA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            padding: 20px;
+        }
+        h1 {
+            color: #2a52be;
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"], input[type="number"] {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #2a52be;
+            color: white;
+        }
+        .delete-btn {
+            background-color: red;
+            color: white;
+            padding: 5px 10px;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .delete-btn:hover {
+            background-color: darkred;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .records-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Vidhyanagri MCA</h1>
+        
+        <!-- Form to add marks for students -->
+        <form method="POST" action="/teacher">
+            <label for="roll_number">Roll Number:</label>
+            <input type="text" name="roll_number" required><br><br>
+            
+            <label for="DAA">DAA:</label>
+            <input type="number" name="DAA" required><br><br>
+            
+            <label for="ML">ML:</label>
+            <input type="number" name="ML" required><br><br>
+            
+            <label for="SE">SE:</label>
+            <input type="number" name="SE" required><br><br>
+            
+            <label for="CC">CC:</label>
+            <input type="number" name="CC" required><br><br>
+            
+            <label for="NCS">NCS:</label>
+            <input type="number" name="NCS" required><br><br>
+            
+            <button type="submit">Submit Marks</button>
+        </form>
+        
+        <!-- Display all records in a table -->
+        <h2 class="records-header">All Student Records</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Roll Number</th>
+                    <th>DAA</th>
+                    <th>ML</th>
+                    <th>SE</th>
+                    <th>CC</th>
+                    <th>NCS</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.roll_number }}</td>
+                    <td>{{ student.DAA }}</td>
+                    <td>{{ student.ML }}</td>
+                    <td>{{ student.SE }}</td>
+                    <td>{{ student.CC }}</td>
+                    <td>{{ student.NCS }}</td>
+                    <td>
+                        <a href="/delete/{{ student.id }}" class="delete-btn">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

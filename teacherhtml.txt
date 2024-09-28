@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher's Portal - Vidhyanagri MCA</title>
+    <style>
+        /* Basic styling for table and buttons */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .delete-btn {
+            background-color: red;
+            color: white;
+            padding: 5px 10px;
+            text-decoration: none;
+            border: none;
+        }
+        .delete-btn:hover {
+            background-color: darkred;
+        }
+        /* Styling for the page header */
+        h1 {
+            color: #0066cc;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Vidhyanagri MCA</h1>
+    
+    <!-- Form to add marks for students -->
+    <form method="POST" action="/teacher">
+        <label for="roll_number">Roll Number:</label>
+        <input type="text" name="roll_number" required><br><br>
+        
+        <label for="DAA">DAA:</label>
+        <input type="number" name="DAA" required><br><br>
+        
+        <label for="ML">ML:</label>
+        <input type="number" name="ML" required><br><br>
+        
+        <label for="SE">SE:</label>
+        <input type="number" name="SE" required><br><br>
+        
+        <label for="CC">CC:</label>
+        <input type="number" name="CC" required><br><br>
+        
+        <label for="NCS">NCS:</label>
+        <input type="number" name="NCS" required><br><br>
+        
+        <button type="submit">Submit Marks</button>
+    </form>
+    
+    <!-- Display all records in a table -->
+    <h2>All Student Records</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Roll Number</th>
+                <th>DAA</th>
+                <th>ML</th>
+                <th>SE</th>
+                <th>CC</th>
+                <th>NCS</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td>{{ student.roll_number }}</td>
+                <td>{{ student.DAA }}</td>
+                <td>{{ student.ML }}</td>
+                <td>{{ student.SE }}</td>
+                <td>{{ student.CC }}</td>
+                <td>{{ student.NCS }}</td>
+                <td>
+                    <a href="/delete/{{ student.id }}" class="delete-btn">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
